@@ -1,0 +1,23 @@
+<%- include('../partials/header') %>
+<div class="titulo-linha"><h1>Autores</h1><a class="btn" href="/autores/novo">Novo autor</a></div>
+<% if (!autores.length) { %>
+  <p class="vazio">Nenhum autor cadastrado. Cadastre o primeiro para poder adicionar livros.</p>
+<% } else { %>
+<table>
+  <thead><tr><th>Nome</th><th>Nacionalidade</th><th>Livros</th><th></th></tr></thead>
+  <tbody>
+  <% autores.forEach(a => { %>
+    <tr>
+      <td><%= a.nome %></td><td><%= a.nacionalidade || '—' %></td><td><%= a.total_livros %></td>
+      <td class="acoes">
+        <a href="/autores/<%= a.id %>/editar">Editar</a>
+        <form method="post" action="/autores/<%= a.id %>/excluir" onsubmit="return confirm('Excluir este autor?')">
+          <button class="link perigo">Excluir</button>
+        </form>
+      </td>
+    </tr>
+  <% }) %>
+  </tbody>
+</table>
+<% } %>
+<%- include('../partials/footer') %>

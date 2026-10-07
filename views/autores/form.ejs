@@ -1,0 +1,8 @@
+<%- include('../partials/header') %>
+<h1><%= titulo %></h1>
+<form method="post" action="<%= acao %>" class="form">
+  <label>Nome <input name="nome" value="<%= autor.nome || '' %>" required maxlength="120"></label>
+  <label>Nacionalidade <input name="nacionalidade" value="<%= autor.nacionalidade || '' %>" maxlength="80"></label>
+  <div class="linha"><button class="btn">Salvar autor</button><a href="/autores">Cancelar</a></div>
+</form>
+<%- include('../partials/footer') %>

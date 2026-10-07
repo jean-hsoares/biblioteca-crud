@@ -1,0 +1,20 @@
+<%- include('../partials/header') %>
+<h1><%= titulo %></h1>
+<% if (!autores.length) { %>
+  <p class="vazio">Cadastre um autor antes de adicionar livros. <a href="/autores/novo">Novo autor</a></p>
+<% } else { %>
+<form method="post" action="<%= acao %>" class="form">
+  <label>Título <input name="titulo" value="<%= livro.titulo || '' %>" required maxlength="200"></label>
+  <label>Ano de publicação <input type="number" name="ano_publicacao" value="<%= livro.ano_publicacao || '' %>" min="0" max="2100"></label>
+  <label>Autor
+    <select name="autor_id" required>
+      <option value="">Escolha um autor</option>
+      <% autores.forEach(a => { %>
+        <option value="<%= a.id %>" <%= String(livro.autor_id) === String(a.id) ? 'selected' : '' %>><%= a.nome %></option>
+      <% }) %>
+    </select>
+  </label>
+  <div class="linha"><button class="btn">Salvar livro</button><a href="/livros">Cancelar</a></div>
+</form>
+<% } %>
+<%- include('../partials/footer') %>
